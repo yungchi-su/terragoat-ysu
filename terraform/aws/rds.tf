@@ -16,7 +16,7 @@ resource "aws_rds_cluster" "app1-rds-cluster" {
 
 resource "aws_rds_cluster" "app2-rds-cluster" {
   cluster_identifier      = "app2-rds-cluster"
-  allocated_storage       = 10
+  allocated_storage       = 11
   backup_retention_period = 1
   tags = {
     git_commit           = "079fe74f6b96d887c245664fbd8cf676c92f20e5"
