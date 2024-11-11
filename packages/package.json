@@ -1,0 +1,74 @@
+{
+  "name": "vms",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "start:local": "NODE_ENV=localdev nodemon app.js",
+    "test": "NODE_ENV=test npm run migrateTestUndo && npm run migrateTest && npm run seed && jest --coverage --watch-all=false --runInBand",
+    "migrate": "npx sequelize-cli db:migrate",
+    "migrateUndo": "npx sequelize-cli db:migrate:undo",
+    "migrateUndoAll": "npx sequelize-cli db:migrate:undo:all",
+    "migrateTest": "NODE_ENV=test npx sequelize-cli db:migrate",
+    "migrateTestUndo": "NODE_ENV=test npx sequelize-cli db:migrate:undo:all",
+    "seed": "NODE_ENV=test npx sequelize-cli db:seed:all",
+    "seedDev": "npx sequelize-cli db:seed:all",
+    "pretest": "./node_modules/.bin/eslint --ignore-path .eslintignore . --fix",
+    "setupDev": "NODE_ENV=localdev npx sequelize-cli db:migrate:undo:all && NODE_ENV=localdev npx sequelize-cli db:migrate && NODE_ENV=localdev npx sequelize-cli db:seed:all",
+    "setupStaging": "NODE_ENV=staging npx sequelize-cli db:migrate:undo:all && NODE_ENV=staging npx sequelize-cli db:migrate && NODE_ENV=staging npx sequelize-cli db:seed:all",
+    "newmig": "npx sequelize-cli migration:generate --name ",
+    "npm:registry:gitlab:stg": "npm config set @sbnw:registry http://sbuilib.stg.sboxdc.com:4872"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run pretest"
+    }
+  },
+  "author": "Team Mojo",
+  "license": "ISC",
+  "standard": {
+    "parser": "babel-eslint"
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.1.0",
+    "eslint": "7.12.1",
+    "eslint-plugin-unicorn": "23.0.0",
+    "husky": "4.3.0",
+    "nodemon": "^2.0.6"
+  },
+  "dependencies": {
+    "@types/jest": "^26.0.14",
+    "archiver": "^5.3.1",
+    "async": "^3.2.4",
+    "axios": "^0.21.0",
+    "bcryptjs": "^2.4.3",
+    "child_process": "^1.0.2",
+    "config": "^3.3.2",
+    "cors": "^2.8.5",
+    "elastic-apm-node": "^3.12.1",
+    "express": "^4.17.1",
+    "express-useragent": "^1.0.15",
+    "express-validator": "^6.6.1",
+    "form-data": "^4.0.0",
+    "jest": "^26.5.3",
+    "jsonwebtoken": "^8.5.1",
+    "kafka-node": "^5.0.0",
+    "kafkajs": "^1.15.0",
+    "mkdirp": "^1.0.4",
+    "moment": "^2.29.1",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.2",
+    "mysql2": "^2.2.5",
+    "node-cron": "^3.0.2",
+    "pm2": "4.5.0",
+    "randomstring": "^1.1.5",
+    "request": "^2.88.2",
+    "sequelize": "^6.3.5",
+    "sequelize-cli": "^6.2.0",
+    "swagger-jsdoc": "^4.3.0",
+    "swagger-ui-express": "^4.1.4",
+    "winston": "^3.3.3",
+    "winston-daily-rotate-file": "^4.5.5"
+  }
+}
